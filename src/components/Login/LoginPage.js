@@ -9,6 +9,8 @@ import withNavigateHook from "../withNavigateHook";
 const LoginPage = (props) => {
     const nameInputRef = useRef();
     const passwordInputRef = useRef();
+    const requiredUname = "abc";
+    const requiredPwd = "123";
 
     const [error, setError] = useState();
 
@@ -32,9 +34,16 @@ const LoginPage = (props) => {
             });
             return;
         }
+        if(enteredName !== requiredUname || enteredPassword !== requiredPwd) {
+            setError({
+                title: "Invalid Username and Password",
+                message: "Please enter a valid credentials.",
+            });
+            return;
+        }
         nameInputRef.current.value = ' ';
         passwordInputRef.current.value = ' ';
-        props.navigation("/login-success");
+        props.navigation("/list-employees");
         //props.onLoginDetails(enteredName, enteredPassword);
     }
 
@@ -61,7 +70,7 @@ const LoginPage = (props) => {
                         ref={passwordInputRef}
                     ></input>
                     <Button type="submit">Login</Button>&nbsp;&nbsp;
-                    <Button onClick={goBack}>GoBack</Button>
+                    <Button onClick={goBack}>Cancel</Button>
                     {/* <button
                         className="btn btn-primary"
                         onClick={goBack}

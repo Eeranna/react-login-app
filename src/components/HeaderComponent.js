@@ -1,11 +1,21 @@
 
-import React from "react";
+import React, { useState } from "react";
 import withNavigateHook from "./withNavigateHook";
 
 const HeaderComponent = (props) => {
 
+    const [showlogin, setShowlogin] = useState(true);
+    const [showlogout, setShowlogout] = useState(false);
+
     const goLogin = () => {
+        setShowlogin(false);
+        setShowlogout(true);
         props.navigation("/login-page");
+    }
+    const goLogout = () => {
+        setShowlogin(true);
+        setShowlogout(false);
+        props.navigation("/");
     }
         return (
             <div>
@@ -15,11 +25,16 @@ const HeaderComponent = (props) => {
                             <a href="https://javaguides.net" className="navbar-brand">
                                 Employee Management App
                             </a>
-                            <button style={{marginLeft: "1100px"}}
+                            {showlogin && <button style={{marginLeft: "1100px"}}
                                 onClick={goLogin}
                                 className="btn btn-info"
                                 >Login{" "}
-                            </button>
+                            </button>}
+                            {showlogout && <button style={{marginLeft: "1100px"}}
+                                onClick={goLogout}
+                                className="btn btn-info"
+                                >Logout{" "}
+                            </button>}
                         </div>
                     </nav>
                 </hreader>

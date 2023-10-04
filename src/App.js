@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/Login/LoginPage';
 import LoginSuccess from './components/Login/LoginSuccess';
 import HeaderComponent from './components/HeaderComponent';
+import ListEmployeeComponent from './components/Employee/ListEmployeeComponent';
+import CreateEmployeeComponent from './components/Employee/CreateEmployeeComponent';
+import ViewEmployeeComponent from './components/Employee/ViewEmployeeComponent';
 
 function App(props) {
 
@@ -16,7 +19,10 @@ function App(props) {
         <HeaderComponent />
         <div className="container">
           <Routes>
-            {/* <Route path="/" exact element={<HeaderComponent />}></Route> */}
+            <Route path = "/list-employees" exact element = {<ListEmployeeComponent />}></Route>
+            <Route path = "/employees" element = {<ListEmployeeComponent />}></Route>
+            <Route path = "/add-employee/:id" element = {<CreateEmployeeComponent />}></Route>
+            <Route path = "/view-employee/:id" element = {<ViewEmployeeComponent />}></Route>
             <Route path="/login-page" element={<LoginPage />}></Route>
             <Route path="/login-success" element={<LoginSuccess/>}></Route>
           </Routes>
