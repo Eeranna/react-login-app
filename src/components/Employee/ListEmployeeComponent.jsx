@@ -40,7 +40,7 @@ class ListEmployeeComponent extends Component {
             this.setState({
                 employees: res.data
             });
-        });
+        }).catch(error => console.log(error));
     }
 
     addEmployee() {
